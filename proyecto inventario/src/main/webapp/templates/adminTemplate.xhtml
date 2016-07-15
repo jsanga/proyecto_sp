@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <meta name="author" content="Joao Sanga"/>
+
+        <title>Sistema de Inventario</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="/sistemainventario/staticFilesLogin/bootstrap.min.css" rel="stylesheet"/>
+
+        <!-- MetisMenu CSS -->
+        <link href="/sistemainventario/staticFilesLogin/metisMenu.min.css" rel="stylesheet"/>
+
+        <!-- Timeline CSS -->
+        <link href="/sistemainventario/staticFilesLogin/timeline.css" rel="stylesheet"/>
+        
+        <link href="/sistemainventario/staticFilesLogin/morris.css" rel="stylesheet"/>
+
+        <!-- Custom CSS -->
+        <link href="/sistemainventario/staticFilesLogin/sb-admin-2.css" rel="stylesheet"/>
+
+        <!-- Morris Charts CSS -->
+
+        <!-- Custom Fonts -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+        
+        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+        <h:outputScript library="primefaces" name="jquery/jquery-plugins.js" target="head" />
+    </h:head>
+    <h:body>
+        <div id="wrapper">
+
+            <!-- Navigation -->
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/sistemainventario/faces/admin/perfil.xhtml">Sistema de Inventario</a>
+                </div>
+                <!-- /.navbar-header -->
+
+                <ul class="nav navbar-top-links navbar-right">
+                    
+                    <!-- /.dropdown -->
+                    <li class="dropdown">
+                        
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                             #{userSession.username} <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <h:form>
+                                <li><a href="/sistemainventario/faces/admin/perfil.xhtml"><i class="fa fa-user fa-fw"></i> Perfil</a>
+                                </li>
+                                <li><a href="/sistemainventario/faces/admin/editarperfil.xhtml"><i class="fa fa-gear fa-fw"></i> Editar perfil</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><p:commandLink actionListener="#{login.salir()}"><i class="fa fa-sign-out fa-fw"></i> Salir</p:commandLink>
+                                </li>
+                            </h:form>
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+                    <!-- /.dropdown -->
+                </ul>
+                <!-- /.navbar-top-links -->
+
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">
+                            
+                            <li>
+                                <a href="/sistemainventario/faces/admin/perfil.xhtml"><i class="fa fa-user"></i> Mi Perfil</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-list-ul"></i> Producto<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="/sistemainventario/faces/admin/cursos/asignacioncurso.xhtml">Nuevo producto</a>
+                                    </li>
+                                    <li>
+                                        <a href="/sistemainventario/faces/admin/cursos/cursos.xhtml">Ver productos</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.sidebar-collapse -->
+                </div>
+                <!-- /.navbar-static-side -->
+            </nav>
+
+            <div id="page-wrapper">                
+                
+                <ui:insert name="content">                    
+                    
+                </ui:insert>
+
+            </div>
+            <!-- /#page-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+
+        <!-- jQuery -->
+        
+        <!-- Bootstrap Core JavaScript -->
+        <script src="/sistemainventario/staticFilesLogin/bootstrap.min.js"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="/sistemainventario/staticFilesLogin/metisMenu.min.js"></script>
+
+
+        <!-- Custom Theme JavaScript -->
+        <script src="/sistemainventario/staticFilesLogin/sb-admin-2.js"></script>
+    </h:body>
+</html>
+
