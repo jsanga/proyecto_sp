@@ -8,7 +8,7 @@ package com.jscompany.ebsystem.managedbeans;
 import com.jscompany.ebsystem.ejb.interfaces.UsuariosServices;
 import com.jscompany.ebsystem.entidades.usuarios.Loguin;
 import com.jscompany.ebsystem.managedbeans.session.UserSession;
-import com.jscompany.ebsystem.services.AclService;
+import com.jscompany.ebsystem.services.Servicios;
 import com.jscompany.ebsystem.util.JsfUti;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
@@ -30,7 +30,7 @@ public class Login implements Serializable{
     private Loguin loguin;
     
     @EJB(beanName = "aclService")
-    private AclService aclServices;
+    private Servicios aclServices;
     
     @EJB(beanName = "usuariosServices")
     private UsuariosServices usuariosServices;

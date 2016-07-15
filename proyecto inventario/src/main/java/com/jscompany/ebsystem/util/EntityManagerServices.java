@@ -6,7 +6,7 @@
 package com.jscompany.ebsystem.util;
 
 import com.jscompany.ebsystem.entitymanager.Entitymanager;
-import com.jscompany.ebsystem.services.AclService;
+import com.jscompany.ebsystem.services.Servicios;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.InitialContext;
@@ -42,10 +42,10 @@ public class EntityManagerServices {
         return manager;
     }
     
-    public static AclService aclService(){
+    public static Servicios aclService(){
         
         try {
-            return (AclService)new InitialContext().lookup("java:global/colegionetworksystem/aclService");
+            return (Servicios)new InitialContext().lookup("java:global/colegionetworksystem/aclService");
         } catch (NamingException ex) {
             Logger.getLogger(EntityManagerServices.class.getName()).log(Level.SEVERE, null, ex);
         }

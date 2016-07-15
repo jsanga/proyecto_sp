@@ -26,10 +26,7 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
 import com.jscompany.ebsystem.util.HiberUtil;
 
-/**
- *
- * @author CarlosLoorVargas
- */
+
 @Stateless(name = "manager")
 @Interceptors(value = {HibernateEjbInterceptor.class})
 public class TransactionManager implements Entitymanager {
@@ -56,7 +53,7 @@ public class TransactionManager implements Entitymanager {
         List result = null;
         try {
             sess = HiberUtil.getSession();
-            sess.enableFilter("activos");
+            
             cq = sess.createCriteria(entity);
             result = (List) cq.list();
             Hibernate.initialize(result);

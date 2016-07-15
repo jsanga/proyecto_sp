@@ -9,12 +9,9 @@ import java.util.List;
 import javax.ejb.Local;
 import org.hibernate.Session;
 
-/**
- *
- * @author CarlosLoorVargas
- */
+
 @Local
-public interface AclService {
+public interface Servicios {
 
     public Session getSession();
     

@@ -9,7 +9,7 @@ import com.jscompany.ebsystem.database.Querys;
 import com.jscompany.ebsystem.ejb.HibernateEjbInterceptor;
 import com.jscompany.ebsystem.ejb.interfaces.UsuariosServices;
 import com.jscompany.ebsystem.entidades.usuarios.Loguin;
-import com.jscompany.ebsystem.services.AclService;
+import com.jscompany.ebsystem.services.Servicios;
 import com.jscompany.ebsystem.util.JsfUti;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +26,7 @@ import javax.interceptor.Interceptors;
 public class UsuariosEjb implements UsuariosServices{
     
     @EJB(beanName = "aclService")
-    private AclService services;
+    private Servicios services;
     
     @Override
     public Boolean validarUsuario(String username, String pass){

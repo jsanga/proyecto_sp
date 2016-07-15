@@ -18,13 +18,10 @@ import javax.ejb.Stateless;
 import javax.interceptor.Interceptors;
 import org.hibernate.Session;
 
-/**
- *
- * @author CarlosLoorVargas
- */
-@Stateless(name = "aclService")
+
+@Stateless(name = "servicios")
 @Interceptors(value = {HibernateEjbInterceptor.class})
-public class AclServiceEjb implements AclService {
+public class ServiciosEjb implements Servicios {
 
     @EJB(beanName = "manager")
     private Entitymanager manager;
@@ -43,7 +40,7 @@ public class AclServiceEjb implements AclService {
         try {
             return manager.find(entity, id);
         } catch (Exception e) {
-            Logger.getLogger(AclServiceEjb.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ServiciosEjb.class.getName()).log(Level.SEVERE, null, e);
         }
         return null;
     }
@@ -55,7 +52,7 @@ public class AclServiceEjb implements AclService {
             o = manager.findNoProxy(query, par, val);
         } catch (Exception e) {
             o = null;
-            Logger.getLogger(AclServiceEjb.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ServiciosEjb.class.getName()).log(Level.SEVERE, null, e);
         }
         return o;
     }
@@ -67,7 +64,7 @@ public class AclServiceEjb implements AclService {
             o = manager.find(query, par, val);
         } catch (Exception e) {
             o = null;
-            Logger.getLogger(AclServiceEjb.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ServiciosEjb.class.getName()).log(Level.SEVERE, null, e);
         }
         return o;
     }
@@ -77,7 +74,7 @@ public class AclServiceEjb implements AclService {
         try {
             return manager.findAll(entity);
         } catch (Exception e) {
-            Logger.getLogger(AclServiceEjb.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ServiciosEjb.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }
@@ -88,7 +85,7 @@ public class AclServiceEjb implements AclService {
         try {
             list = manager.findAll(query, par, val);
         } catch (Exception e) {
-            Logger.getLogger(AclServiceEjb.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ServiciosEjb.class.getName()).log(Level.SEVERE, null, e);
         }
         return list;
     }
@@ -100,7 +97,7 @@ public class AclServiceEjb implements AclService {
             list = manager.findMax(query, par, val, max);
         } catch (Exception e) {
             list = null;
-            Logger.getLogger(AclServiceEjb.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ServiciosEjb.class.getName()).log(Level.SEVERE, null, e);
         }
         return list;
     }
@@ -112,7 +109,7 @@ public class AclServiceEjb implements AclService {
             list = manager.findAllEntCopy(query, par, val);
         } catch (Exception e) {
             list = null;
-            Logger.getLogger(AclServiceEjb.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ServiciosEjb.class.getName()).log(Level.SEVERE, null, e);
         }
         return list;
     }
@@ -122,7 +119,7 @@ public class AclServiceEjb implements AclService {
         try {
             return manager.findAllEntCopy(entity);
         } catch (Exception e) {
-            Logger.getLogger(AclServiceEjb.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ServiciosEjb.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }
@@ -134,7 +131,7 @@ public class AclServiceEjb implements AclService {
             ob = manager.persist(o);
         } catch (Exception e) {
             ob = null;
-            Logger.getLogger(AclServiceEjb.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ServiciosEjb.class.getName()).log(Level.SEVERE, null, e);
         }
         return ob;
     }
@@ -144,7 +141,7 @@ public class AclServiceEjb implements AclService {
         try {
             manager.update(o);
         } catch (Exception e) {
-            Logger.getLogger(AclServiceEjb.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ServiciosEjb.class.getName()).log(Level.SEVERE, null, e);
             return false;
         }
         return true;
@@ -157,7 +154,7 @@ public class AclServiceEjb implements AclService {
             o = manager.saveAll(entity);
         } catch (Exception e) {
             o = null;
-            Logger.getLogger(AclServiceEjb.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ServiciosEjb.class.getName()).log(Level.SEVERE, null, e);
         }
         return o;
     }
@@ -167,7 +164,7 @@ public class AclServiceEjb implements AclService {
         try {
             manager.persist(o);
         } catch (Exception e) {
-            Logger.getLogger(AclServiceEjb.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ServiciosEjb.class.getName()).log(Level.SEVERE, null, e);
             return false;
         }
         return true;
@@ -180,7 +177,7 @@ public class AclServiceEjb implements AclService {
             flag = manager.delete(o);
         } catch (Exception e) {
             flag = false;
-            Logger.getLogger(AclServiceEjb.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ServiciosEjb.class.getName()).log(Level.SEVERE, null, e);
         }
         return flag;
     }
