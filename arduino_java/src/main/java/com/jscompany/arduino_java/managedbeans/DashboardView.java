@@ -5,9 +5,11 @@
  */
 package com.jscompany.arduino_java.managedbeans;
 
+import com.jscompany.arduino_java.entidades.Artefacto;
 import com.jscompany.arduino_java.util.JsfUti;
 import java.io.Serializable;
-import java.util.logging.Level;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
@@ -37,6 +39,11 @@ public class DashboardView implements Serializable{
     private Boolean alarmaActivada;
     private String mensajeAlarma;
     
+    private List<Artefacto> artefactoList;
+    private List<Artefacto> artefactoList2;
+    private List<Artefacto> artefactoList3;
+    private List<Artefacto> artefactoList4;
+    
     
     @PostConstruct
     public void init(){
@@ -44,9 +51,19 @@ public class DashboardView implements Serializable{
             estadoConexion = true;
             estadoAlarma = false;
             alarmaActivada = false;
+            
+            artefactoList = new ArrayList<Artefacto>();
+            artefactoList2 = new ArrayList<Artefacto>();
+            artefactoList3 = new ArrayList<Artefacto>();
+            artefactoList4 = new ArrayList<Artefacto>();
+            this.llenarEstaciones();
         }else{
             JsfUti.redirectFaces("");
         }
+    }
+    
+    public void llenarEstaciones(){
+        artefactoList.add(new Artefacto());
     }
     
     public void enviarMsj(){
