@@ -2,16 +2,62 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <meta charset="UTF-8"></meta>
+        <title>Login</title>
+        <style>
+            body {
+                width:auto;
+                    height:auto;
+              background: -webkit-linear-gradient(90deg, #16222A 10%, #3A6073 90%); /* Chrome 10+, Saf5.1+ */
+              background:    -moz-linear-gradient(90deg, #16222A 10%, #3A6073 90%); /* FF3.6+ */
+              background:     -ms-linear-gradient(90deg, #16222A 10%, #3A6073 90%); /* IE10 */
+              background:      -o-linear-gradient(90deg, #16222A 10%, #3A6073 90%); /* Opera 11.10+ */
+              background:         linear-gradient(90deg, #16222A 10%, #3A6073 90%); /* W3C */
+            font-family: 'Raleway', sans-serif;
+            }
+            .ui-panelgrid>*>tr,
+            .ui-panelgrid .ui-panelgrid-cell {
+                border: none;
+            }
+        </style>
     </h:head>
     <h:body>
-        <h:form>
-            Indice
-            <p:commandButton actionListener="#{loginView.muestraAlgo()}" value="Click me"/>
+        
+        <h:form id="frmMain" style="margin-top: auto; margin-bottom: auto;"> 
+            <p:growl id="message" autoUpdate="true" showDetail="true" sticky="true"/>
+            <h:panelGroup >
+                <center>
+                    <h:panelGroup >
+                        <h2>
+                            <h:outputText value="Sistema Domótico" style="color: #DDD6D6;"/>
+                        </h2>
+                        <p:panel header="Ventana de Ingreso" style="width: 660px; font-size: 14px;">
+                            <h:panelGroup>
+                                <p:panelGrid columns="1">
+                                    <p:inputText placeholder="Username" value="#{loginView.username}" style="width: 300px;"/>
+                                    <p:inputText placeholder="Password" value="#{loginView.pass}" style="width: 300px;"/>
+                                    <p:panelGrid columns="2" style="width: 100%">
+                                        <h:panelGroup >
+                                            <p:selectBooleanCheckbox value="#{loginView.recordarDatos}"/>
+                                            <h:outputText value=" Recordar datos" id="lblDatos" style="font-size: 12px;"/>
+                                        </h:panelGroup>
+                                        <p:commandButton value="Entrar" actionListener="#{loginView.login()}" style="float: right; font-size: 14px; width: 100px;"/>
+                                    </p:panelGrid>
+                                    <p:commandLink value="Olvidó su contraseña?" style="font-size: 10px; float: right;"/>
+                                </p:panelGrid>
+                            </h:panelGroup>
+                        </p:panel>
+                    </h:panelGroup>
+                </center>
+            </h:panelGroup>
         </h:form>
+        
+        <p:ajaxStatus onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()"  />
+
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false"  closable="false" resizable="false" showHeader="false" style="opacity: 0.6;">
+            <img src="images/spinner.gif" />
+        </p:dialog>
     </h:body>
 </html>
-

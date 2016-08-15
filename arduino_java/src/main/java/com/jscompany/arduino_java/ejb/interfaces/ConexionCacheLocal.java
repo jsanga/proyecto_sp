@@ -18,6 +18,4 @@ public interface ConexionCacheLocal {
     
     public void clearCache();
     
-    public SerialPort getConexion(String portName);
-    
 }

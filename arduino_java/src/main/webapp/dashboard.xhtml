@@ -1,12 +1,99 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Controladores</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <h:form id="frmMain">
+            <p:tabView >
+                <p:tab title="Sistema Maestro">
+                    <center>
+                        <h2>
+                            <h:outputText value="Alarma Principal"/>
+                        </h2>
+                        <p:panel style="margin-top: 10px;">
+                            <p:panelGrid columns="1">
+                                <h:panelGroup >
+                                    <h:outputText value="Estado de conexión: "/>
+                                    <h:panelGroup rendered="#{dashboardView.estadoConexion}">                                        
+                                        <p:graphicImage value="/image/circleGreen.png" height="12"  />
+                                        <h:outputText value="Conectado" style="margin-left: 4px;"/>                                        
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{!dashboardView.estadoConexion}">                                        
+                                        <p:graphicImage value="/image/circleRed.png" height="12" />
+                                        <h:outputText value="Desconectado" style="margin-left: 4px;"/>
+                                    </h:panelGroup>
+                                </h:panelGroup>
+
+
+                                <h:panelGroup rendered="#{dashboardView.estadoConexion}">
+                                    <h:outputText value="Estado de la alarma: " />
+                                    <h:panelGroup rendered="#{dashboardView.estadoAlarma}">
+                                        <h:commandLink id="btn1" actionListener="#{dashboardView.cambiarEstado()}">
+                                            <p:graphicImage value="/image/circleGreen.png" height="12"  />
+                                            <h:outputText value="Activada" style="margin-left: 4px;"/>
+                                        </h:commandLink>
+                                        <p:tooltip for="btn1" value="Apagar alarma" />
+                                        
+                                        <!-- -->
+                                        <br/>
+                                        <center>
+                                            <h:panelGroup rendered="#{dashboardView.alarmaActivada}">
+                                                <h:outputText value="#{dashboardView.mensajeAlarma}"/>
+                                                <p:commandButton value="Detener la alarma" actionListener="#{dashboardView.detenerAlarma()}" style="margin-top: 15px; "/>
+                                            </h:panelGroup>
+                                        </center>
+                                    </h:panelGroup>
+                                    
+                                    <!-- -->
+                                    
+                                    <h:panelGroup rendered="#{!dashboardView.estadoAlarma}">
+                                        <h:commandLink id="btn2" actionListener="#{dashboardView.cambiarEstado()}" >
+                                            <p:graphicImage value="/image/circleRed.png" height="12"  />
+                                            <h:outputText value="Desactivada" style="margin-left: 4px;"/>
+                                        </h:commandLink>
+                                        <p:tooltip for="btn2" value="Encender alarma" />
+                                    </h:panelGroup>
+                                    <!--<p:commandButton value="Enviar mensaje" actionListener="#{dashboardView.enviarMsj()}"/>-->
+                                </h:panelGroup>
+                            </p:panelGrid>
+                        </p:panel>
+                    </center>
+                </p:tab>
+                
+                <!-- -->
+                
+                <p:tab title="Estaciones">
+                    <p:tabView >
+                        <p:tab title="Comedor">
+                            
+                        </p:tab>
+                        
+                        <!-- -->
+                        
+                        <p:tab title="Sala">
+                            
+                        </p:tab>
+                        
+                        <!-- -->
+                        
+                        <p:tab title="Cocina">
+                            
+                        </p:tab>
+                        
+                        <!-- -->
+                        
+                        <p:tab title="Habitación">
+                            
+                        </p:tab>
+                    </p:tabView>
+                </p:tab>
+            </p:tabView>
+            
+        </h:form>
     </h:body>
 </html>
 
