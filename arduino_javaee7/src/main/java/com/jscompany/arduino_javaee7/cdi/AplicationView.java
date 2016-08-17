@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jscompany.arduino_java.managedbeans;
+package com.jscompany.arduino_javaee7.cdi;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -25,7 +25,7 @@ import javax.mail.internet.MimeMessage;
  *
  * @author Joao Sanga
  */
-@ManagedBean
+@Named
 @ApplicationScoped
 public class AplicationView implements Serializable {
 

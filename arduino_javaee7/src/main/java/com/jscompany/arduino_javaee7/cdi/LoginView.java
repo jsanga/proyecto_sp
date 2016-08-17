@@ -3,30 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jscompany.arduino_java.managedbeans;
+package com.jscompany.arduino_javaee7.cdi;
 
-import com.jscompany.arduino_java.util.JsfUti;
+import com.jscompany.arduino_javaee7.util.JsfUti;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  *
  * @author Joao Sanga
  */
-@ManagedBean
+@Named
 @ViewScoped
 public class LoginView implements Serializable{
     
     public static final Long serialVerisonUID = 1L;
     
-    @ManagedProperty(value= "#{userSession}")
+    @Inject
     private UserSession uSession;
     
-    private String username, pass;
+    private String username="", pass="";
     private Boolean recordarDatos;
     
     @PostConstruct

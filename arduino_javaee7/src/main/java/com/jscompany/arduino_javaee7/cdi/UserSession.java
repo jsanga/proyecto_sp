@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jscompany.arduino_java.managedbeans;
+package com.jscompany.arduino_javaee7.cdi;
 
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
@@ -14,7 +14,7 @@ import javax.inject.Named;
  *
  * @author Joao Sanga
  */
-@ManagedBean
+@Named
 @SessionScoped
 public class UserSession implements Serializable {
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jscompany.arduino_java.entidades;
+package com.jscompany.arduino_javaee7.entidades;
 
 import java.io.Serializable;
 
