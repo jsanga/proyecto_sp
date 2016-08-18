@@ -36,8 +36,10 @@
                         <p:panel header="Ventana de Ingreso" style="width: 660px; font-size: 14px;">
                             <h:panelGroup>
                                 <p:panelGrid columns="1">
-                                    <p:inputText placeholder="Username" value="#{loginView.username}" style="width: 300px;"/>
-                                    <p:inputText type="password" placeholder="Password" value="#{loginView.pass}" style="width: 300px;"/>
+                                    <center>
+                                        <p:inputText placeholder="Username" value="#{loginView.username}" style="width: 150px;"/>
+                                        <p:inputText type="password" placeholder="Password" value="#{loginView.pass}" style="width: 150px;"/>
+                                    </center>
                                     <p:panelGrid columns="2" style="width: 100%">
                                         <h:panelGroup >
                                             <p:selectBooleanCheckbox value="#{loginView.recordarDatos}"/>
@@ -45,6 +47,7 @@
                                         </h:panelGroup>
                                         <p:commandButton value="Entrar" actionListener="#{loginView.login()}" style="float: right; font-size: 14px; width: 100px;"/>
                                     </p:panelGrid>
+                                    
                                     <p:commandLink value="Olvidó su contraseña?" style="font-size: 10px; float: right;"/>
                                 </p:panelGrid>
                             </h:panelGroup>

@@ -14,7 +14,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import javax.inject.Inject;
 
 /**
  *
@@ -51,7 +50,12 @@ public class DashboardView implements Serializable{
             alarmaActivada = false;            
             
             this.llenarEstaciones();
+            
+            if(uSession.getCont() == 0){
+                JsfUti.messageInfo(null, "Info", "Bienvenido");
+            }
             JsfUti.update("frmMain");
+            uSession.setCont(uSession.getCont() + 1);
         }else{
             JsfUti.redirectFaces("");
         }
@@ -76,9 +80,9 @@ public class DashboardView implements Serializable{
         
         // SALA
         
-        artefactoList2.add(new Artefacto("Ventana", true));
+        artefactoList2.add(new Artefacto("Ventana", false));
         artefactoList2.add(new Artefacto("Puerta de garaje", false));
-        artefactoList2.add(new Artefacto("Puerta", false));
+        artefactoList2.add(new Artefacto("Puerta", true));
         artefactoList2.add(new Artefacto("Luces", true));
         
         // COCINA
@@ -185,5 +189,5 @@ public class DashboardView implements Serializable{
     public void setArtefactoList4(List<Artefacto> artefactoList4) {
         this.artefactoList4 = artefactoList4;
     }
-    
+
 }

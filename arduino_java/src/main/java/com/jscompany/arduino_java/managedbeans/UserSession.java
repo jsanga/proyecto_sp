@@ -21,6 +21,7 @@ public class UserSession implements Serializable {
     public static final Long serialVersionUID = 1L;
     
     private Boolean estaLogueado = false;
+    private Integer cont;
         
     public void loguearUsuario(){
         estaLogueado = true;
@@ -36,6 +37,14 @@ public class UserSession implements Serializable {
 
     public void setEstaLogueado(Boolean estaLogueado) {
         this.estaLogueado = estaLogueado;
+    }
+
+    public Integer getCont() {
+        return cont;
+    }
+
+    public void setCont(Integer cont) {
+        this.cont = cont;
     }
     
 }

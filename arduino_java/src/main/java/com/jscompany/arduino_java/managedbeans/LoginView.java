@@ -37,6 +37,7 @@ public class LoginView implements Serializable{
     public void login(){
         if(username.equalsIgnoreCase("admin") && pass.equalsIgnoreCase("admin")){
             uSession.loguearUsuario();
+            uSession.setCont(0);
             JsfUti.redirectFaces("/dashboard.xhtml");            
         }else{
             JsfUti.messageInfo(null, "Info", "Usuario no registrado");
