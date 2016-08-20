@@ -5,9 +5,11 @@
  */
 package com.jscompany.arduino_java.managedbeans;
 
+import com.jscompany.arduino_java.ejb.interfaces.ConexionCacheLocal;
 import com.jscompany.arduino_java.util.JsfUti;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -38,7 +40,7 @@ public class LoginView implements Serializable{
         if(username.equalsIgnoreCase("admin") && pass.equalsIgnoreCase("admin")){
             uSession.loguearUsuario();
             uSession.setCont(0);
-            JsfUti.redirectFaces("/dashboard.xhtml");            
+            JsfUti.redirectFaces("/dashboard.xhtml");
         }else{
             JsfUti.messageInfo(null, "Info", "Usuario no registrado");
             JsfUti.update("frmMain");

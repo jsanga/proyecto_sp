@@ -7,6 +7,7 @@ package com.jscompany.arduino_java.managedbeans;
 
 import com.jscompany.arduino_java.entidades.Artefacto;
 import com.jscompany.arduino_java.util.JsfUti;
+import gnu.io.SerialPortEventListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,19 +29,17 @@ public class DashboardView implements Serializable{
     @ManagedProperty(value= "#{userSession}")
     private UserSession uSession;
     
-    @ManagedProperty(value= "#{aplicationView}")
-    private AplicationView appView;
-    
     private Boolean estadoConexion;
     private Boolean estadoAlarma;
     private Boolean alarmaActivada;
     private String mensajeAlarma;
-    
+        
     private List<Artefacto> artefactoList;
     private List<Artefacto> artefactoList2;
     private List<Artefacto> artefactoList3;
     private List<Artefacto> artefactoList4;
     
+    private SerialPortEventListener listener;
     
     @PostConstruct
     public void init(){
@@ -63,6 +62,17 @@ public class DashboardView implements Serializable{
     
     public void cambiarEstadoBoton(Artefacto art){
         art.setEstadoBoton(!art.getEstadoBoton());
+    }
+    
+    public void verEstadoConexion(){
+        if(uSession.getConexionStatus(listener)){
+            JsfUti.messageInfo(null, "Info", "Conectado");
+            System.out.println("Conectado");
+        }else{
+            JsfUti.messageInfo(null, "Info", "No conectado");
+            System.out.println("No Conectado");
+        }
+        JsfUti.update("frmMain");
     }
     
     public void llenarEstaciones(){
@@ -96,10 +106,6 @@ public class DashboardView implements Serializable{
         artefactoList4.add(new Artefacto("Ventanas", false));
         artefactoList4.add(new Artefacto("Luces", true));
         
-    }
-    
-    public void enviarMsj(){
-        appView.sendMessage();
     }
         
     public void cambiarEstado(){
@@ -140,14 +146,6 @@ public class DashboardView implements Serializable{
 
     public void setAlarmaActivada(Boolean alarmaActivada) {
         this.alarmaActivada = alarmaActivada;
-    }
-
-    public AplicationView getAppView() {
-        return appView;
-    }
-
-    public void setAppView(AplicationView appView) {
-        this.appView = appView;
     }
 
     public String getMensajeAlarma() {

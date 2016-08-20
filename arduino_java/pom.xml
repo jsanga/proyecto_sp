@@ -13,7 +13,7 @@
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
+     
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
@@ -120,7 +120,7 @@
             <artifactId>rxtx</artifactId>
             <version>2.1.7</version>
         </dependency>
-        
+                
         <!-- https://mvnrepository.com/artifact/com.google.api-client/google-api-client -->
         <dependency>
             <groupId>com.google.api-client</groupId>
@@ -133,6 +133,13 @@
             <groupId>com.google.apis</groupId>
             <artifactId>google-api-services-gmail</artifactId>
             <version>v1-rev48-1.22.0</version>
+        </dependency>
+        
+        
+        <dependency>
+            <groupId>com.panamahitek_arduino</groupId>
+            <artifactId>panamahitek_arduino-core</artifactId>
+            <version>0.0.1</version>
         </dependency>
 
     </dependencies>
@@ -181,6 +188,30 @@
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.5.2</version>
+                <executions>
+                    <execution>
+                        <id>install-external</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${basedir}/src/main/resources/PanamaHitek_Arduino-2.7.3.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>com.panamahitek_arduino</groupId>
+                            <artifactId>panamahitek_arduino-core</artifactId>
+                            <version>0.0.1</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>

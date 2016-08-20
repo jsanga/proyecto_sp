@@ -5,7 +5,6 @@
  */
 package com.jscompany.arduino_java.ejb.interfaces;
 
-import gnu.io.CommPort;
 import gnu.io.SerialPort;
 import javax.ejb.Local;
 
@@ -16,6 +15,8 @@ import javax.ejb.Local;
 @Local
 public interface ConexionCacheLocal {
     
-    public void clearCache();
+    public void clearCache(String portName);
+    
+    public SerialPort getConexion(String portName);
     
 }

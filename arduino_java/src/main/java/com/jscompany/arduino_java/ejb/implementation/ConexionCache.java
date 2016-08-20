@@ -6,7 +6,17 @@
 package com.jscompany.arduino_java.ejb.implementation;
 
 import com.jscompany.arduino_java.ejb.interfaces.ConexionCacheLocal;
-import javax.annotation.Resource;
+import gnu.io.CommPort;
+import gnu.io.CommPortIdentifier;
+import gnu.io.SerialPort;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
 import javax.ejb.Singleton;
@@ -22,17 +32,12 @@ public class ConexionCache implements ConexionCacheLocal {
     //@Resource
     //private ManagedThreadFactory threadFactory;
     
-    public void clearCache(){
-        
-    }
-    
-    /*
     protected ConcurrentMap<String, SerialPort> conexionMap;
     protected ConcurrentMap<String, String> lockerMap = new ConcurrentHashMap();
     
     @Override
-    public void clearCache(){
-        conexionMap.remove("conexion");
+    public void clearCache(String portName){
+        conexionMap.remove(portName);
     }
     
     @Override
@@ -95,9 +100,9 @@ public class ConexionCache implements ConexionCacheLocal {
         lockerMap.putIfAbsent(portName, portName);
 
         return lockerMap.get(portName);
-    }*/
+    }
     
-    /** 
+    /** */
     private static class SerialReader implements Runnable 
     {
         InputStream in;
@@ -123,9 +128,9 @@ public class ConexionCache implements ConexionCacheLocal {
                 e.printStackTrace();
             }            
         }
-    }*/
+    }
 
-    /** 
+    /** */
     private static class SerialWriter implements Runnable 
     {
         OutputStream out;
@@ -150,20 +155,20 @@ public class ConexionCache implements ConexionCacheLocal {
                 e.printStackTrace();
             }            
         }
-    }*/
+    }
     
     /**
      * Inicializa el map de menubars en vacio
-     
+     */
     protected void initMenubarsMap() {
         this.conexionMap = new ConcurrentHashMap();
-    }*/
+    }
 
     /**
      * Inicializa el singleton ejb
-     
+     */
     @PostConstruct
     protected void init() {
         this.initMenubarsMap();
-    }*/
+    }
 }
