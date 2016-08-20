@@ -65,14 +65,21 @@ public class DashboardView implements Serializable{
     }
     
     public void verEstadoConexion(){
-        if(uSession.getConexionStatus(listener)){
-            JsfUti.messageInfo(null, "Info", "Conectado");
-            System.out.println("Conectado");
-        }else{
-            JsfUti.messageInfo(null, "Info", "No conectado");
-            System.out.println("No Conectado");
+        try{
+            if(uSession.setData(listener)){
+                JsfUti.messageInfo(null, "Info", "Conectado");
+                System.out.println("Conectado");
+            }else{
+                JsfUti.messageInfo(null, "Info", "No conectado");
+                System.out.println("No Conectado");
+            }
+            uSession.getArduino().sendData("1");
+            uSession.getConexionStatus();
+            JsfUti.update("frmMain");
+            
+        }catch(Exception e){
+            e.printStackTrace();
         }
-        JsfUti.update("frmMain");
     }
     
     public void llenarEstaciones(){

@@ -31,25 +31,32 @@ public class UserSession implements Serializable {
     private Integer cont;
     private SerialPort puertoSerial;
     
-    PanamaHitek_Arduino ino;
+    private PanamaHitek_Arduino arduino;
 
         
     public void loguearUsuario(){
         estaLogueado = true;
-        puertoSerial = conexion.getConexion("COM3");
+        arduino = new PanamaHitek_Arduino();
     }
     
-    public Boolean getConexionStatus(SerialPortEventListener listener){
+    public Boolean setData(SerialPortEventListener listener){
         try{
-            if(puertoSerial == null){
+            arduino.arduinoRXTX("COM3", 9600, listener);
+            
+            /*if(puertoSerial == null){
                 return false;
             }else{
                 ino = new PanamaHitek_Arduino();
                 return true;
-            }
+            }*/
         }catch(Exception e){
             e.printStackTrace();
         }
+        return null;
+    }
+    
+    public Boolean getConexionStatus(){
+        System.out.println(arduino.printMessage());
         return null;
     }
     
@@ -79,6 +86,14 @@ public class UserSession implements Serializable {
 
     public void setPuertoSerial(SerialPort puertoSerial) {
         this.puertoSerial = puertoSerial;
+    }
+
+    public PanamaHitek_Arduino getArduino() {
+        return arduino;
+    }
+
+    public void setArduino(PanamaHitek_Arduino arduino) {
+        this.arduino = arduino;
     }
     
 }
