@@ -49,7 +49,6 @@ public class DashboardView implements Serializable{
             alarmaActivada = false;            
             
             this.llenarEstaciones();
-            
             if(uSession.getCont() == 0){
                 JsfUti.messageInfo(null, "Info", "Bienvenido");
             }
@@ -60,22 +59,33 @@ public class DashboardView implements Serializable{
         }
     }
     
+    public void getStatus(){
+        System.out.println("Entra al estado");
+        uSession.getConexionStatus();
+    }
+    
     public void cambiarEstadoBoton(Artefacto art){
         art.setEstadoBoton(!art.getEstadoBoton());
     }
     
-    public void verEstadoConexion(){
+    public void estadoEncendido(){
         try{
-            if(uSession.setData(listener)){
-                JsfUti.messageInfo(null, "Info", "Conectado");
-                System.out.println("Conectado");
-            }else{
-                JsfUti.messageInfo(null, "Info", "No conectado");
-                System.out.println("No Conectado");
-            }
+            System.out.println("Estado Encendido");
             uSession.getArduino().sendData("1");
-            uSession.getConexionStatus();
             JsfUti.update("frmMain");
+            
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void estadoApagado(){
+        try{
+            System.out.println("Estado Apagado");
+            uSession.getArduino().sendData("0");
+            JsfUti.update("frmMain");
+            
             
         }catch(Exception e){
             e.printStackTrace();

@@ -12,7 +12,9 @@
             <p:tabView >
                 <p:tab title="Sistema Maestro">
                     <center>
-                        <p:commandButton value="Ver conexion" actionListener="#{dashboardView.verEstadoConexion()}"/>
+                        <p:commandButton value="Encender" actionListener="#{dashboardView.estadoEncendido()}"/>
+                        <p:commandButton value="Apagar" actionListener="#{dashboardView.estadoApagado()}"/>
+                        <p:commandButton value="Estado" actionListener="#{dashboardView.getStatus()}"/>
                         <h2>
                             <h:outputText value="Alarma Principal"/>
                         </h2>

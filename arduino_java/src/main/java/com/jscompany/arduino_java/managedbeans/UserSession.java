@@ -8,6 +8,7 @@ package com.jscompany.arduino_java.managedbeans;
 import com.jscompany.arduino_java.ejb.interfaces.ConexionCacheLocal;
 import com.panamahitek.PanamaHitek_Arduino;
 import gnu.io.SerialPort;
+import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
 import java.io.Serializable;
 import javax.ejb.EJB;
@@ -32,27 +33,30 @@ public class UserSession implements Serializable {
     private SerialPort puertoSerial;
     
     private PanamaHitek_Arduino arduino;
+    private SerialPortEventListener listener;
 
         
     public void loguearUsuario(){
         estaLogueado = true;
         arduino = new PanamaHitek_Arduino();
+        listener = new SerialPortEventListener() {
+
+            @Override
+            public void serialEvent(SerialPortEvent spe) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        };
+        init();
     }
     
-    public Boolean setData(SerialPortEventListener listener){
+    public Boolean init(){
         try{
-            arduino.arduinoRXTX("COM3", 9600, listener);
-            
-            /*if(puertoSerial == null){
-                return false;
-            }else{
-                ino = new PanamaHitek_Arduino();
-                return true;
-            }*/
+            arduino.arduinoRXTX("COM11", 9600, listener);
+            return true;
         }catch(Exception e){
             e.printStackTrace();
-        }
-        return null;
+            return false;
+        }        
     }
     
     public Boolean getConexionStatus(){
@@ -62,6 +66,8 @@ public class UserSession implements Serializable {
     
     public void cerrarSesion(){
         estaLogueado = false;
+        arduino = null;
+        
     }
 
     public Boolean getEstaLogueado() {
@@ -94,6 +100,14 @@ public class UserSession implements Serializable {
 
     public void setArduino(PanamaHitek_Arduino arduino) {
         this.arduino = arduino;
+    }
+
+    public SerialPortEventListener getListener() {
+        return listener;
+    }
+
+    public void setListener(SerialPortEventListener listener) {
+        this.listener = listener;
     }
     
 }
