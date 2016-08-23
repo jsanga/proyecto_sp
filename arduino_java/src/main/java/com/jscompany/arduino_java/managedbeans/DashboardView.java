@@ -58,12 +58,7 @@ public class DashboardView implements Serializable{
             JsfUti.redirectFaces("");
         }
     }
-    
-    public void getStatus(){
-        System.out.println("Entra al estado");
-        uSession.getConexionStatus();
-    }
-    
+        
     public void cambiarEstadoBoton(Artefacto art){
         art.setEstadoBoton(!art.getEstadoBoton());
     }
@@ -71,7 +66,7 @@ public class DashboardView implements Serializable{
     public void estadoEncendido(){
         try{
             System.out.println("Estado Encendido");
-            uSession.getArduino().sendData("1");
+            //uSession.getArduino().sendData("1");
             JsfUti.update("frmMain");
             
             
@@ -83,9 +78,8 @@ public class DashboardView implements Serializable{
     public void estadoApagado(){
         try{
             System.out.println("Estado Apagado");
-            uSession.getArduino().sendData("0");
+            //uSession.getArduino().sendData("0");
             JsfUti.update("frmMain");
-            
             
         }catch(Exception e){
             e.printStackTrace();

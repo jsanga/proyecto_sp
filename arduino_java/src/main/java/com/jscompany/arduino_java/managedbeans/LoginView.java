@@ -28,6 +28,9 @@ public class LoginView implements Serializable{
     @ManagedProperty(value= "#{userSession}")
     private UserSession uSession;
     
+    @ManagedProperty(value= "#{aplicationView}")
+    private AplicationView appView;
+    
     private String username, pass;
     private Boolean recordarDatos;
     
@@ -77,6 +80,14 @@ public class LoginView implements Serializable{
 
     public void setRecordarDatos(Boolean recordarDatos) {
         this.recordarDatos = recordarDatos;
+    }
+
+    public AplicationView getAppView() {
+        return appView;
+    }
+
+    public void setAppView(AplicationView appView) {
+        this.appView = appView;
     }
     
 }
