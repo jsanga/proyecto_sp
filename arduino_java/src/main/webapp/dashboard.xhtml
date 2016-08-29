@@ -14,7 +14,6 @@
                     <center>
                         <p:commandButton value="Encender" actionListener="#{dashboardView.estadoEncendido()}"/>
                         <p:commandButton value="Apagar" actionListener="#{dashboardView.estadoApagado()}"/>
-                        <p:commandButton value="Estado" actionListener="#{dashboardView.getStatus()}"/>
                         <h2>
                             <h:outputText value="Alarma Principal"/>
                         </h2>
@@ -63,6 +62,16 @@
                                     </h:panelGroup>
                                     <!--<p:commandButton value="Enviar mensaje" actionListener="#{dashboardView.enviarMsj()}"/>-->
                                 </h:panelGroup>
+                            </p:panelGrid>
+                            
+                            <p:panelGrid>
+                                <h:panelGrid columns="1" style="margin-bottom: 10px">
+                                    <h:outputText id="output" value="Porcentaje de luminiscencia %#{dashboardView.porcentajeLuz}" />
+                                    <h:inputHidden id="txt2" value="#{dashboardView.porcentajeLuz}" />
+                                    <p:slider for="txt2" minValue="0" maxValue="100" display="output" style="width: 260px" displayTemplate="Porcentaje de luminiscencia %{value}" >
+                                        <p:ajax event="slideEnd" listener="#{dashboardView.enviarPorcentaje()}" process="txt2"/>
+                                    </p:slider>
+                                </h:panelGrid>
                             </p:panelGrid>
                         </p:panel>
                     </center>

@@ -29,6 +29,9 @@ public class DashboardView implements Serializable{
     @ManagedProperty(value= "#{userSession}")
     private UserSession uSession;
     
+    @ManagedProperty(value= "#{aplicationView}")
+    private AplicationView appView;
+    
     private Boolean estadoConexion;
     private Boolean estadoAlarma;
     private Boolean alarmaActivada;
@@ -38,16 +41,15 @@ public class DashboardView implements Serializable{
     private List<Artefacto> artefactoList2;
     private List<Artefacto> artefactoList3;
     private List<Artefacto> artefactoList4;
-    
-    private SerialPortEventListener listener;
+    private int porcentajeLuz;
+    private Double porcentajeArduino;
     
     @PostConstruct
     public void init(){
         if(uSession.getEstaLogueado()){
             estadoConexion = true;
             estadoAlarma = false;
-            alarmaActivada = false;            
-            
+            alarmaActivada = false;      
             this.llenarEstaciones();
             if(uSession.getCont() == 0){
                 JsfUti.messageInfo(null, "Info", "Bienvenido");
@@ -58,6 +60,11 @@ public class DashboardView implements Serializable{
             JsfUti.redirectFaces("");
         }
     }
+    
+    public void enviarPorcentaje(){
+        porcentajeArduino = (Double.parseDouble(""+porcentajeLuz) / 100) * 5;
+        System.out.println(porcentajeArduino);
+    }
         
     public void cambiarEstadoBoton(Artefacto art){
         art.setEstadoBoton(!art.getEstadoBoton());
@@ -65,11 +72,14 @@ public class DashboardView implements Serializable{
     
     public void estadoEncendido(){
         try{
-            System.out.println("Estado Encendido");
-            //uSession.getArduino().sendData("1");
+            if(appView.getArduino1() != null){
+                System.out.println("Estado Encendido");
+                System.out.println(appView.getArduino1().getPortsAvailable());
+                System.out.println(appView.getArduino1().receiveData());
+            }else{
+                JsfUti.messageInfo(null, "Info", "El arduino no está conectado");
+            }
             JsfUti.update("frmMain");
-            
-            
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -197,6 +207,22 @@ public class DashboardView implements Serializable{
 
     public void setArtefactoList4(List<Artefacto> artefactoList4) {
         this.artefactoList4 = artefactoList4;
+    }
+
+    public AplicationView getAppView() {
+        return appView;
+    }
+
+    public void setAppView(AplicationView appView) {
+        this.appView = appView;
+    }
+
+    public int getPorcentajeLuz() {
+        return porcentajeLuz;
+    }
+
+    public void setPorcentajeLuz(int porcentajeLuz) {
+        this.porcentajeLuz = porcentajeLuz;
     }
 
 }
