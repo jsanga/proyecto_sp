@@ -59,11 +59,13 @@ public class AplicationView implements Serializable {
             @Override
             public void serialEvent(SerialPortEvent spe) {
                 //RECIBE CONSTANTEMENTE DE ARDUINO
+                if(arduino1.isMessageAvailable())
+                    System.out.println(arduino1.printMessage());
                 
             }
         };        
         try {
-            arduino1.arduinoRXTX ("COM4", 9600, listener);
+            arduino1.arduinoRXTX ("COM1", 9600, listener);
         } catch (Exception ex) {
             Logger.getLogger(AplicationView.class.getName()).log(Level.SEVERE, null, ex);
         }

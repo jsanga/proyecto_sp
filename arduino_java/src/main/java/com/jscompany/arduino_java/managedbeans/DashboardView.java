@@ -7,10 +7,11 @@ package com.jscompany.arduino_java.managedbeans;
 
 import com.jscompany.arduino_java.entidades.Artefacto;
 import com.jscompany.arduino_java.util.JsfUti;
-import gnu.io.SerialPortEventListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -85,10 +86,31 @@ public class DashboardView implements Serializable{
         }
     }
     
+    public void sendMessage(){
+        
+        try{
+            appView.getArduino1().sendData("1 3");
+            /*appView.getArduino1().sendByte(3);
+            appView.getArduino1().sendByte(0);
+            appView.getArduino1().sendByte(0);
+            appView.getArduino1().sendByte(0);
+            appView.getArduino1().sendByte(4);
+            appView.getArduino1().sendByte(13);
+            appView.getArduino1().sendByte(9);
+            try {
+                //RECIBE CONSTANTEMENTE DE ARDUINO
+                //System.out.println(appView.getArduino1().receiveData());
+            } catch (Exception ex) {
+                Logger.getLogger(AplicationView.class.getName()).log(Level.SEVERE, null, ex);
+            }*/
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     public void estadoApagado(){
         try{
-            System.out.println("Estado Apagado");
-            //uSession.getArduino().sendData("0");
+            appView.getArduino1().sendData("0");
             JsfUti.update("frmMain");
             
         }catch(Exception e){
